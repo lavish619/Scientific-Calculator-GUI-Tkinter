@@ -179,7 +179,6 @@ menubar = Menu(cal)
 filemenu= Menu(menubar,tearoff=0)
 menubar.add_cascade(label="File", menu=filemenu)
 filemenu.add_command(label= "Standard", command= standard)
-
 filemenu.add_separator()
 filemenu.add_command(label="Scientific", command= scientific)
 root.config(menu=menubar)
@@ -191,12 +190,11 @@ expression=""
 font= tkinter.font.Font(size=12,weight= "bold", family='Helvetica',)
 h=2
 w=7
-actvbgnd='white'
+actvbgnd=fg1='white'
 bg1='gray0'
 bg2="chocolate1"
 bg3="salmon1"
 bg4= "RosyBrown1"
-fg1= "white"
 fg2="black"
 
 numberpad = [7,8,9,4,5,6,1,2,3]
@@ -209,7 +207,7 @@ for j in range(3):
 
 r=5
 c=7
-Button(cal,command  = lambda: pressbtn(0),  text = "0", bg= bg1, fg=fg1,activebackground=actvbgnd,
+Button(cal,command  = lambda: pressbtn('0'),  text = "0", bg= bg1, fg=fg1,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-7)
 Button(cal,command  = lambda: pressbtn('00'),text = "00", bg= bg1, fg=fg1,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-6)
