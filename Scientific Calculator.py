@@ -30,34 +30,18 @@ def clearback():
     if value=='':
         temp1=[]
         temp2=[]
-    elif expression[-5:]=="asin(":
+    elif expression[-5:] in ["asin(","acos(","atan("]:
         for _ in range(5):temp1.pop()
         for _ in range(10):temp2.pop()
-    
-    elif expression[-5:]=="acos(":
-        for _ in range(5):temp1.pop()
-        for _ in range(11):temp2.pop()
-    
-    elif expression[-5:]=="atan(":
-        for _ in range(5):temp1.pop()
-        for _ in range(11):temp2.pop()
-        
+   
     elif expression[-4:]=="log(":
         for _ in range(4):temp1.pop()
         for _ in range(11):temp2.pop()
         
-    elif expression[-4:]=='sin(':
+    elif expression[-4:] in ['sin(','cos(','tan(']:
         for _ in range(4): temp1.pop()
         for _ in range(9): temp2.pop()
     
-    elif expression[-4:]=='cos(' :
-        for _ in range(4): temp1.pop()
-        for _ in range(9): temp2.pop()
-        
-    elif expression[-4:]=='tan(':
-        for _ in range(4): temp1.pop()
-        for _ in range(9): temp2.pop()
-        
     elif expression[-4:]=='sgn(':
         for _ in range(4): temp1.pop()
         for _ in range(4): temp2.pop()
@@ -105,66 +89,26 @@ def clearback():
     value=result2
     try:ans = str(eval(value))
     except:pass
-
+    
 def pressbtn(num):
     global expression 
     global value
     global ans
     expression = expression + str(num)
     equation.set(expression)
-    if num=='1':
-        value += '1'
+    if num in ["1","2","3","4","5","6","7","8","9","0","(",")","00"]:
+        value += num
         try:ans = str(eval(value))
         except:ans = "Invalid Expression"
-    elif num=='2':
-        value += '2'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='3':
-        value += '3'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='4':
-        value += '4'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='5':
-        value += '5'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='6':
-        value += '6'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='7':
-        value += '7'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='8':
-        value += '8'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='9':
-        value += '9'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='0':
-        value += '0'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='00':
-        value += '00'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num=='+':value += '+'
-    elif num=='-':value += '-'
-    elif num=='*':value += '*'
-    elif num=='/':value += '/'
-    elif num=='.':value += '.'    
-    elif num=='asin(':value += 'math.asin('
-    elif num=='acos(':value += 'math.acos('
-    elif num=='atan(':value += 'math.atan('
+        
+    elif num in ["+",'-','/','*','.','1/','sgn(']:
+        value += num
+      
+    elif num in ['asin(','acos(','atan(','sin(','cos(','tan(']:
+        value += 'math.'+ num
+    
     elif num=='^':value += '**'
+    
     elif num=='%':
         value += '/100'
         try:ans = str(eval(value))
@@ -177,11 +121,9 @@ def pressbtn(num):
         value += '**3'
         try:ans = str(eval(value))
         except:ans = "Invalid Expression"
-    elif num=='1/':value += '1/'
+
     elif num=='√(':value += 'math.sqrt('
-    elif num=='sin(':value += 'math.sin('
-    elif num=='cos(':value += 'math.cos('
-    elif num=='tan(':value += 'math.tan('
+    
     elif num=='e':
         value += 'math.e'
         try:ans = str(eval(value))
@@ -193,21 +135,15 @@ def pressbtn(num):
     elif num=='log(':value += 'math.log10('
     elif num=='ln(':value += 'math.log('
     elif num=='e^':value += 'math.e**'
-    elif num== 'sgn(':value += 'sgn('
-    elif num=='(':
-        value += '('
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-    elif num==')':
-        value += ')'
-        try:ans = str(eval(value))
-        except:ans = "Invalid Expression"
-
+    
 def equal():
     global ans
     global value
     global expression
-
+    
+    if value=="":
+        ans=""
+        
     equation.set(ans)
     ans=''
     value=''
@@ -267,13 +203,13 @@ numberpad = [7,8,9,4,5,6,1,2,3]
 i=0
 for j in range(3):
     for k in range(3):
-        Button(cal,command  = lambda x =str(numberpad[i]) : pressbtn(x), text = str(numberpad[i]), bg= bg1, fg=fg1,activebackground=actvbgnd,
+        Button(cal,command  = lambda x = str(numberpad[i]) : pressbtn(x), text = str(numberpad[i]), bg= bg1, fg=fg1,activebackground=actvbgnd,
                height=h, width=w,font= font).grid(row=j+2,column=k)
         i+=1
 
 r=5
 c=7
-Button(cal,command  = lambda: pressbtn('0'),  text = "0", bg= bg1, fg=fg1,activebackground=actvbgnd,
+Button(cal,command  = lambda: pressbtn(0),  text = "0", bg= bg1, fg=fg1,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-7)
 Button(cal,command  = lambda: pressbtn('00'),text = "00", bg= bg1, fg=fg1,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-6)
@@ -297,7 +233,6 @@ Button(cal,command  = equal,                text = "=", bg= bg2, fg=fg2,activeba
 list1=['(',')','%','asin','sin','log','x^2','acos','cos','ln','x^3','atan','tan','e^x','1/x','x^y','e',"π",'√x','sgn']
 list2=['(',')','%','asin(','sin(','log(','^2','acos(','cos(','ln(','^3','atan(','tan(','e^','1/','^','e',"π",'√(','sgn(']
 i=0
-btn=[]
 for j in range(5):
     for k in range(4):
         Button(cal,command  = lambda x= list2[i]: pressbtn(x),  text = list1[i], bg=bg4,  fg= fg2,activebackground=actvbgnd,
