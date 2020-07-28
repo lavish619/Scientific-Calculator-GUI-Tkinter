@@ -7,5 +7,8 @@ Though it may look like a long code, but it is very easy to understand. I tried 
 
 Note: The only condition with it is that must contain appropriate parantheses otherwise its gonna take it as an Invalid Expression.
 
+#### Screenshot
 
-![alt text](https://github.com/lavish619/Scientific-Calculator-GUI-Tkinter/blob/master/scientific%20%20calc%20image.jpg?raw=true)
+![alt text](https://github.com/lavish619/Scientific-Calculator-GUI-Tkinter/blob/master/Screenshots/Screenshot-scientific.jpg?raw=True)
+
+
