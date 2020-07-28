@@ -155,7 +155,7 @@ root.title("Scientific Calculator")
 root.resizable(False,False)
 cal= Frame(root)
 cal.grid()
-cal.configure(bg="brown1")
+cal.configure(bg="burlywood4")
 equation=StringVar()
 
 area = Entry(cal, textvariable = equation,width= 60, font= ("Comic Sans MS", 15),bd=10 ,justify=LEFT,state=DISABLED,
@@ -190,26 +190,27 @@ expression=""
 font= tkinter.font.Font(size=12,weight= "bold", family='Helvetica',)
 h=2
 w=7
-actvbgnd=fg1='white'
-bg1='gray0'
-bg2="chocolate1"
-bg3="salmon1"
-bg4= "RosyBrown1"
+actvbgnd='white'
+bg1='wheat3'
+bg2="burlywood1"
+bg3="burlywood2"
+bg4= "tan1"
+fg1= "white"
 fg2="black"
 
 numberpad = [7,8,9,4,5,6,1,2,3]
 i=0
 for j in range(3):
     for k in range(3):
-        Button(cal,command  = lambda x = str(numberpad[i]) : pressbtn(x), text = str(numberpad[i]), bg= bg1, fg=fg1,activebackground=actvbgnd,
+        Button(cal,command  = lambda x = str(numberpad[i]) : pressbtn(x), text = str(numberpad[i]), bg= bg1, fg=fg2,activebackground=actvbgnd,
                height=h, width=w,font= font).grid(row=j+2,column=k)
         i+=1
 
 r=5
 c=7
-Button(cal,command  = lambda: pressbtn('0'),  text = "0", bg= bg1, fg=fg1,activebackground=actvbgnd,
+Button(cal,command  = lambda: pressbtn(0),  text = "0", bg= bg1, fg=fg2,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-7)
-Button(cal,command  = lambda: pressbtn('00'),text = "00", bg= bg1, fg=fg1,activebackground=actvbgnd,
+Button(cal,command  = lambda: pressbtn('00'),text = "00", bg= bg1, fg=fg2,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-6)
 Button(cal,command  = clearback,            text = "C", bg= bg2, fg=fg2,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r-4,column= c-7)
