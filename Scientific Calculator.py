@@ -208,7 +208,7 @@ for j in range(3):
 
 r=5
 c=7
-Button(cal,command  = lambda: pressbtn(0),  text = "0", bg= bg1, fg=fg2,activebackground=actvbgnd,
+Button(cal,command  = lambda: pressbtn('0'),  text = "0", bg= bg1, fg=fg2,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-7)
 Button(cal,command  = lambda: pressbtn('00'),text = "00", bg= bg1, fg=fg2,activebackground=actvbgnd,
                     height=h, width=w,font= font).grid(row=r,column= c-6)
